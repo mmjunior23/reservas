@@ -33,7 +33,9 @@ npx expo prebuild --clean
 
 npx expo run:android
 
+![Alt text](print.png?raw=true "Rascunho da tela, exemplo.")
 
+![Alt text](sqlite.png?raw=true "Dados gravados na tabela 'Reserva' no SQLite")
 
 
 
