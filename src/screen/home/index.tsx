@@ -1,6 +1,6 @@
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { FormTask } from '../../components/Form';
-import { Tasks } from '../../components/Tasks';
+import { FormReserva } from '../../components/Form';
+import { Reservas } from '../../components/Reservas';
 import { useState } from 'react';
 import Actions from '../../components/actions';
 
@@ -12,19 +12,19 @@ export function Home() {
       <StatusBar backgroundColor="#0f172a" barStyle="light-content" />
 
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Easy Notes</Text>
-        <Text style={styles.text}>Crie e gerencie suas tarefas</Text>
+        <Text style={styles.title}>Controle de reservas</Text>
+        <Text style={styles.text}>Gerencie as reservas dos moradores</Text>
 
-        <FormTask />
+        <FormReserva />
 
         <Actions filter={filter} setFilter={(status) => setFilter(status)} />
 
         {filter && (
-          <Tasks filter={filter} />
+          <Reservas filter={filter} />
         )}
 
         {!filter && (
-          <Tasks filter={filter} />
+          <Reservas filter={filter} />
         )}
 
       </SafeAreaView>

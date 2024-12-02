@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { Task } from '@prisma/client'
+import { Reserva } from '@prisma/client'
 import { prismaClient } from '../../services/db';
 import { Ionicons } from '@expo/vector-icons'
 
 interface Props {
-  data: Task
+  data: Reserva
 }
 
-export function TaskList({ data }: Props) {
+export function ReservaList({ data }: Props) {
 
 
-  async function handleDeleteTask() {
-    await prismaClient.task.delete({
+  async function handleDeleteReserva() {
+    await prismaClient.reserva.delete({
       where: {
         id: data.id
       }
@@ -19,26 +19,28 @@ export function TaskList({ data }: Props) {
   }
 
   async function handleUpdateStatus() {
-    await prismaClient.task.update({
+    await prismaClient.reserva.update({
       where: {
         id: data.id
       },
       data: {
-        completed: true
+        concluido: true
       }
     })
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{data.name}</Text>
+      <Text style={styles.text}>Quando: {data.dia.toDateString()} - {data.hora.toTimeString()}</Text>
+      <Text style={styles.text}>{data.moradorApartamento} - {data.moradorNome}</Text>
+      <Text style={styles.text}>Finalidade: {data.finalidade}</Text>
 
       <View style={styles.buttons}>
-        <Pressable style={styles.buttonDelete} onPress={handleDeleteTask}>
+        <Pressable style={styles.buttonDelete} onPress={handleDeleteReserva}>
           <Ionicons name="trash-outline" size={16} color="#FFF" />
         </Pressable>
 
-        {!data.completed && (
+        {!data.concluido && (
           <Pressable style={styles.buttonComplete} onPress={handleUpdateStatus}>
             <Ionicons name="checkmark-outline" size={16} color="#FFF" />
           </Pressable>

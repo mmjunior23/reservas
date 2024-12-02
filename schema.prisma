@@ -8,8 +8,15 @@ datasource db {
   url      = "file:./app.db"
 }
 
-model Task {
-  id        Int     @id @default(autoincrement())
-  name      String
-  completed Boolean @default(false)
+model Reserva {
+  id                 Int      @id @default(autoincrement())
+  finalidade         String   @default("Mudança 1")
+  moradorApartamento String
+  moradorNome        String
+  dia                DateTime
+  hora               DateTime
+  concluido          Boolean  @default(false)
+  // @@check("finalidade IN ('Mudança 1','Mudança 2','Obra 1','Obra 2','Churrasqueira 1','Churrasqueira 2','Salão de Festa')") // Adiciona o CHECK
+
+  @@unique([finalidade, dia]) // Cria a restrição UNIQUE composta
 }

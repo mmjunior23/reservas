@@ -1,21 +1,21 @@
 import { StyleSheet, FlatList } from 'react-native';
 import { prismaClient } from '../../services/db';
-import { TaskList } from './list';
+import { ReservaList } from './list';
 
-export function Tasks({ filter }: { filter: boolean }) {
+export function Reservas({ filter }: { filter: boolean }) {
 
-  const tasks = prismaClient.task.useFindMany({
+  const reservas = prismaClient.reserva.useFindMany({
     where: {
-      completed: filter
+      concluido: filter
     }
   });
 
   return (
     <>
       <FlatList
-        data={tasks}
+        data={reservas}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <TaskList data={item} />}
+        renderItem={({ item }) => <ReservaList data={item} />}
       />
     </>
   );
